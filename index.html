@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAB ANIMALS - Enter</title>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'mono': ['Courier New', 'monospace'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            overflow: hidden;
+        }
+        
+        .ascii-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, transparent 0, transparent 2px, #000 2px, #000 3px, transparent 3px),
+                radial-gradient(circle at 75% 75%, transparent 0, transparent 2px, #000 2px, #000 3px, transparent 3px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.1;
+        }
+        
+        .enter-text {
+            text-shadow: 
+                3px 3px 0px #000,
+                6px 6px 0px rgba(0,0,0,0.3);
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .ascii-border {
+            border: 2px dashed #000;
+            border-style: dashed;
+        }
+        
+        .ascii-text {
+            font-family: 'Courier New', monospace;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+        
+        .glitch-text {
+            position: relative;
+            animation: glitch 2s infinite;
+        }
+        
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.2);
+        }
+    </style>
+</head>
+<body x-data="{ 
+    enterHover: false,
+    enterClick() {
+        window.location.href = './main.html';
+    }
+}" class="h-screen w-screen flex items-center justify-center relative">
+    
+    <!-- ASCII Pattern Background -->
+    <div class="ascii-pattern absolute inset-0"></div>
+    
+    <!-- Main Content -->
+    <div class="relative z-10 text-center">
+        <div class="mb-8">
+            <h1 class="text-6xl md:text-8xl font-mono font-bold text-black ascii-text">
+                LAB ANIMALS
+            </h1>
+            <p class="text-xl md:text-2xl font-mono text-gray-700 mt-4">
+                DANCE-PUNK
+            </p>
+        </div>
+        
+        <!-- Enter Button -->
+        <div 
+            @mouseenter="enterHover = true" 
+            @mouseleave="enterHover = false"
+            @click="enterClick()"
+            class="cursor-pointer inline-block"
+        >
+            <div class="ascii-border p-8 md:p-12 bg-white/80 backdrop-blur-sm transition-all duration-300"
+                 :class="enterHover ? 'scale-105 shadow-2xl' : 'shadow-lg'">
+                <h2 class="text-4xl md:text-6xl font-mono font-bold text-black enter-text"
+                    :class="enterHover ? 'glitch-text' : ''">
+                    ENTER
+                </h2>
+                <p class="text-sm md:text-base font-mono text-gray-600 mt-2">
+                    CLICK TO ENTER
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="absolute bottom-0 left-0 right-0 z-20 p-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="ascii-border p-4 bg-white/90 backdrop-blur-sm">
+                <div class="flex justify-center items-center space-x-6">
+                    <a href="#" class="social-icon text-2xl text-black hover:text-gray-700" title="Facebook">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="social-icon text-2xl text-black hover:text-gray-700" title="X (Twitter)">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon text-2xl text-black hover:text-gray-700" title="Bluesky">
+                        <i class="fas fa-cloud"></i>
+                    </a>
+                    <a href="#" class="social-icon text-2xl text-black hover:text-gray-700" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-icon text-2xl text-black hover:text-gray-700" title="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="#" class="social-icon text-2xl text-black hover:text-gray-700" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+                <div class="text-center mt-3">
+                    <p class="text-xs font-mono text-gray-600">LAB ANIMALS © 2024</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- ASCII Art Corners -->
+    <div class="absolute top-4 left-4 text-black font-mono text-xs opacity-30">
+        +---+<br>
+        |   |<br>
+        +---+
+    </div>
+    <div class="absolute top-4 right-4 text-black font-mono text-xs opacity-30">
+        +---+<br>
+        |   |<br>
+        +---+
+    </div>
+    <div class="absolute bottom-4 left-4 text-black font-mono text-xs opacity-30">
+        +---+<br>
+        |   |<br>
+        +---+
+    </div>
+    <div class="absolute bottom-4 right-4 text-black font-mono text-xs opacity-30">
+        +---+<br>
+        |   |<br>
+        +---+
+    </div>
+</body>
+</html> 

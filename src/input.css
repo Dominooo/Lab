@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .ascii-border {
+    border: 2px dashed #000;
+    border-style: dashed;
+  }
+  
+  .ascii-text {
+    font-family: 'Courier New', monospace;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+  }
+  
+  .glitch-text {
+    position: relative;
+    animation: glitch 2s infinite;
+  }
+  
+  @keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+  }
+} 
